@@ -1,0 +1,31 @@
+{
+  "name": "cybaiautotest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --timeout 300000 --file test/**/**.js --jobs 1",
+    "swap-positive": "mocha --timeout 30000 --file test/smoke/swap-positive.js",
+    "robot-smoke": "mocha --timeout 30000 --file test/smoke/teleport.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "assert": "^2.0.0",
+    "chai": "^4.3.6",
+    "chromedriver": "^103.0.0",
+    "css-to-xpath": "^0.1.0",
+    "expect": "^29.0.1",
+    "fs": "^0.0.1-security",
+    "jest": "^29.0.0",
+    "mocha": "^10.0.0",
+    "os": "^0.1.2",
+    "path": "^0.12.7",
+    "prettier": "^2.7.1",
+    "request": "^2.88.2",
+    "selenium-webdriver": "^4.3.1",
+    "ts-node": "^10.9.1",
+    "webdriver": "^7.20.7"
+  }
+}
