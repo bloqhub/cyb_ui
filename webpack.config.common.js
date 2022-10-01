@@ -45,7 +45,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx', '.scss', '.svg', '.css', '.json'],
     alias: {
       'multicodec/src/base-table': path.dirname(
-          require.resolve('multicodec/src/base-table.json')
+        require.resolve('multicodec/src/base-table.json')
       ),
       "react/jsx-dev-runtime.js": "react/jsx-dev-runtime",
       "react/jsx-runtime.js": "react/jsx-runtime",
@@ -55,7 +55,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       Buffer: [ 'buffer', 'Buffer' ],
       process: 'process/browser',
-    }),
+  }),
     new CleanWebpackPlugin(),
     new BootloaderPlugin(HTMLWebpackPlugin, {
       script: './src/components/loader/loader.js',
