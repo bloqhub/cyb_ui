@@ -59,6 +59,7 @@ import {
 } from './containers/wasm';
 import Help from './containers/help';
 import Assets from './containers/assets';
+import Skills from './containers/skills';
 import MainPartal from './containers/portal/mainPortal';
 
 import useIpfsFactory from './useIpfsFactory';
@@ -155,6 +156,7 @@ function AppRouter({
 
         <Route path="/help" component={Help} />
         <Route path="/assets" component={Assets} />
+        <Route path="/skills" component={Skills} />
       </Switch>
     </Router>
   );
