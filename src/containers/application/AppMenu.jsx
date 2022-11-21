@@ -49,6 +49,7 @@ const itemsMenu = (address) => {
     { name: 'My Avatar', to: linkAvatar, subItems: [] },
     { name: 'My Community', to: linkCommunity, subItems: [] },
     { name: 'My Sense', to: '/sixthSense', subItems: [] },
+    { name: 'Skills', to: '/skills', subItems: [] },
     { name: 'My Brain', to: linkBrain, subItems: [] },
     { name: 'My Energy', to: '/grid', subItems: [] },
     // { name: 'Lifeforms', to: '/contracts', subItems: [] },

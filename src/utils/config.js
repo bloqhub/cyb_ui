@@ -1,7 +1,7 @@
 const TIME_START = '2021-11-05T13:22:42Z';
 const INFINITY = '∞';
 const WP =
-  'https://ipfs.io/ipfs/QmQ1Vong13MDNxixDyUdjniqqEj8sjuNEBYMyhQU4gQgq3';
+    'https://ipfs.io/ipfs/QmQ1Vong13MDNxixDyUdjniqqEj8sjuNEBYMyhQU4gQgq3';
 const AUCTION = {
   ADDR_SMART_CONTRACT: '0x0b1f54be915e77d9bf14268f94f8a26afab11296',
   ADDR_VESTING: '0xd84469ecd96825c956d7ae8b072209ca89ae37e2',
@@ -9,17 +9,42 @@ const AUCTION = {
   TOKEN_NAME: 'GOL',
   ADDR_TOKEN: '0xF4ecdBa8ba4144Ff3a2d8792Cad9051431Aa4F64',
   TOPICS_SEND:
-    '0x3b599f6217e39be59216b60e543ce0d4c7d534fe64dd9d962334924e7819894e',
+      '0x3b599f6217e39be59216b60e543ce0d4c7d534fe64dd9d962334924e7819894e',
   TOPICS_CLAIM:
-    '0x3ed1528b0fdc7c5207c1bf935e34a667e13656b9ed165260c522be0bc544f303',
+      '0x3ed1528b0fdc7c5207c1bf935e34a667e13656b9ed165260c522be0bc544f303',
   TOPICS_VESTING:
-    '0x552f182d4b9ab267a8580e2aa80cf374b7aabc8f528b7e9eea58919eea48e87d',
+      '0x552f182d4b9ab267a8580e2aa80cf374b7aabc8f528b7e9eea58919eea48e87d',
   HTTP_PROVIDER_URL: 'https://rpc.ethereum.cybernode.ai/',
   // 'https://mainnet.infura.io/v3/b80bdc43536c4f0c97b8c0afd2a7d75d',
   ROUND_DURATION: 1000 * 60 * 60 * 23 + 1,
   TOKEN_ALOCATION: 15 * 10 ** 3,
 };
 
+
+
+const DEFAULT_SKILLS={
+  "cyber-rpc": [
+    { network: "bostrom", endpoint: "rpc.bostrom.cybernode.ai", owner: null, default: true },
+    { network: "space-pussy-1", endpoint: "rpc.space-pussy-1.cybernode.ai", owner: null, default: false },
+  ],
+  "cyber-index": [
+    { network: "bostrom", endpoint: "index.bostrom.cybernode.ai/v1/graphql", owner: null, default: true },
+    { network: "space-pussy-1", endpoint: "index.space-pussy-1.cybernode.ai/v1/graphql", owner: null, default: false },
+  ],
+  "cosmos-rpc": [
+    { network: "cosmos", endpoint: "", owner: null, default: true }
+  ],
+}
+
+//@FIXME
+let WARP_CONTRACTS = {
+  TOKENS: '',
+  NETWORKS: '',
+  CHANNELS: '',
+  CONTRACTS: '',
+  PROTOCOLS: '',
+};
+// WARP_CONTRACTS.CONTRACTS
 const ADD_ARAGON_FINANCE = '0xa0a55e68dc52b47f8a9d5d05329fab5bdabffb14';
 
 const NETWORKSIDS = {
@@ -63,9 +88,46 @@ const COSMOS = {
   BECH32_PREFIX_ACC_ADDR_COSMOS: 'cosmos',
 };
 
-const WARP_CONTRACTS= {
-  SKILLS: 'awdawd',
+let CHAIN_PARAMS={
+  CHAIN_ID: 'bostrom',
+  CYBER_NODE_URL_API: 'https://rpc.bostrom.cybernode.ai',
+  CYBER_WEBSOCKET_URL: 'wss://rpc.bostrom.cybernode.ai/websocket',
+  CYBER_NODE_URL_LCD: 'https://lcd.bostrom.cybernode.ai',
+  CYBER_INDEX_HTTPS: 'https://index.bostrom.cybernode.ai/v1/graphql',
+  CYBER_INDEX_WEBSOCKET: 'wss://index.bostrom.cybernode.ai/v1/graphql',
 };
+
+if (process.env.CHAIN_ID === 'space-pussy-1') {
+  WARP_CONTRACTS = {
+    TOKENS: 'bostrom1z08f52ec2uv0l6mdq992xvrjz0cvzd5paxgudya47w86rq23k6nsmj7pkc',
+    NETWORKS: 'bostrom1t43xfejres9uun8yuy5p5jrppdvhtnx8cartkv099rpq5xs2n7xqlx0c8j',
+    CHANNELS: 'bostrom1ca2qzw2hun4hzyra3an2wjfghgr7vp4hduluk88dnq9nwxj0ktrs9e8ry4',
+    CONTRACTS: 'bostrom1qaq4qe2edzhugntlnx69anaz0h6lmtd4dd0s4at7tgakytyqt5rqdrvd8x',
+    PROTOCOLS: 'bostrom12k7wefhf3snvfc5wezpytscxuxhyaxjw9ta4ryj4q0mtvh79062s055z69',
+    ENDPOINTS: 'bostrom1gfk0pudg2qcj9xuuwef785zlrxkdk4ggnvr5enr82ljwtgfv0frq43ff3e',
+    SKILLS: 'bostrom16h7zxgurqmy4772c57y960qfs303fq2czh6t7w44tae0qdln0uhqjqyzt7',
+  };
+
+  CHAIN_PARAMS={
+    CHAIN_ID: 'space-pussy-1',
+    CYBER_NODE_URL_API: 'https://rpc.space-pussy-1.cybernode.ai',
+    CYBER_WEBSOCKET_URL: 'wss://rpc.space-pussy-1.cybernode.ai/websocket',
+    CYBER_NODE_URL_LCD: 'https://lcd.space-pussy-1.cybernode.ai',
+    CYBER_INDEX_HTTPS: 'https://index.space-pussy-1.cybernode.ai/v1/graphql',
+    CYBER_INDEX_WEBSOCKET: 'wss://index.space-pussy-1.cybernode.ai/v1/graphql',
+  };
+}
+
+if (process.env.CHAIN_ID === 'dev') {
+  CHAIN_PARAMS={
+    CHAIN_ID: 'dev',
+    CYBER_NODE_URL_API: 'http://localhost:26657',
+    CYBER_WEBSOCKET_URL: 'ws://localhost:26657/websocket',
+    CYBER_INDEX_HTTPS: 'https://index.space-pussy-1.cybernode.ai/v1/graphql',
+    CYBER_INDEX_WEBSOCKET: 'wss://index.space-pussy-1.cybernode.ai/v1/graphql',
+  };
+}
+
 
 const CYBER = {
   CYBER_CONGRESS_ADDRESS: 'cyber1latzme6xf6s8tsrymuu6laf2ks2humqvdq39v8',
@@ -73,25 +135,7 @@ const CYBER = {
   DENOM_CYBER: 'boot',
   DENOM_CYBER_G: `GBOOT`,
   HYDROGEN: 'H',
-
-  // CHAIN_ID: 'dev',
-  // CYBER_NODE_URL_API: 'http://localhost:26657',
-  // CYBER_WEBSOCKET_URL: 'ws://localhost:26657/websocket',
-  // CYBER_NODE_URL_LCD: 'http://localhost:1317',
-
-  CHAIN_ID: 'bostrom',
-  CYBER_NODE_URL_API: 'https://rpc.bostrom.cybernode.ai',
-  CYBER_WEBSOCKET_URL: 'wss://rpc.bostrom.cybernode.ai/websocket',
-  CYBER_NODE_URL_LCD: 'https://lcd.bostrom.cybernode.ai',
-  CYBER_INDEX_HTTPS: 'https://index.bostrom.cybernode.ai/v1/graphql',
-  CYBER_INDEX_WEBSOCKET: 'wss://index.bostrom.cybernode.ai/v1/graphql',
-
-  // CHAIN_ID: 'space-pussy-1',
-  // CYBER_NODE_URL_API: 'https://rpc.space-pussy-1.cybernode.ai',
-  // CYBER_WEBSOCKET_URL: 'wss://rpc.space-pussy-1.cybernode.ai/websocket',
-  // CYBER_NODE_URL_LCD: 'https://lcd.space-pussy-1.cybernode.ai',
-  // CYBER_INDEX_HTTPS: 'https://index.space-pussy-1.cybernode.ai/v1/graphql',
-  // CYBER_INDEX_WEBSOCKET: 'wss://index.space-pussy-1.cybernode.ai/v1/graphql',
+  ...CHAIN_PARAMS,
 
   CYBER_GATEWAY: 'https://gateway.ipfs.cybernode.ai',
 
@@ -99,6 +143,8 @@ const CYBER = {
   BECH32_PREFIX_ACC_ADDR_CYBERVALOPER: 'bostromvaloper',
   MEMO_KEPLR: '[bostrom] cyb.ai, using keplr',
 };
+
+
 
 const DEFAULT_GAS_LIMITS = 200000;
 
@@ -269,4 +315,6 @@ export {
   VOTE_OPTION,
   BOND_STATUS,
   CID_AVATAR,
+  WARP_CONTRACTS,
+  DEFAULT_SKILLS,
 };
